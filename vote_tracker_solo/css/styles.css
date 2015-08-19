@@ -1,0 +1,21 @@
+#kittenLeft {
+  display: inline-block;
+}
+
+#kittenRight {
+  display: inline-block;
+}
+
+#chart {
+  display: inline-block;
+}
+
+#picsAndChart {
+  width: 960px;
+  margin: auto;
+}
+
+body {
+  background-color: #5c5b5e;
+}
+

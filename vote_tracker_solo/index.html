@@ -2,28 +2,32 @@
 <html>
   <head>
     <title>Kitten Komparison</title>
+      <link href="css/styles.css" type="text/css" rel="stylesheet" />
+
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+      <script src="js/Chart.min.js"></script>
   </head>
 
   <body>
     <h2 id="message"></h2>
+    <div id="picsAndChart">
+      <div id="kittenLeft" border="1px solid">
+        <input id = "displayLeft" type="image" src="" alt="click">
+      </div>
 
-    <div id="kittenLeft" border="1px solid">
-      <input id = "displayLeft" type="image" src="" alt="submit">
+      <div id="chart">
+        <canvas id="myChart" width="200" height="200"></canvas>
+      </div>
+
+      <div id="kittenRight" border="1px solid">
+        <input id = "displayRight" type="image" src="" alt="click">
+      </div>
+
+      <div id="nextKitten">
+        <input type="button" value="Next">
+      </div>
     </div>
-
-    <div id="kittenRight" border="1px solid">
-      <input id = "displayRight" type="image" src="" alt="submit">
-    </div>
-
-    <div id="chart">
-      <canvas></canvas>
-    </div>
-
-
-
-    <div id="nextKitten">
-      <input type="submit" value="Next">
-
     <script src="js/app.js"></script>
   </body>
 
