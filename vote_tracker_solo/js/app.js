@@ -1,31 +1,57 @@
 'use strict';
 
+//client ID 65f92de39f6d2b4
+//secret 83b1ea0cc4290224ced30cc85295bc8d710ad89c
+
 $(document).ready(function() {
+
+var pics = [];
+var tracker;
+var myNewChart;
+
+$.ajax({
+  url: 'https://api.imgur.com/3/album/DDoWy.json',
+  method: 'GET',
+  headers: {
+    'Authorization': 'Client-ID 65f92de39f6d2b4'
+  }
+})
+.done(function(res) {
+  pics = res.data.images;
+  console.log(pics);
+
+  for (var i = 0; i < pics.length; i++) {
+    photoArray[i] = new Photo(pics[i].link);
+  }
+
+  tracker = new Tracker();
+  tracker.displayPhoto;
+  tracker.addEventListeners();
+  var leftVotes = tracker.leftPhoto.votes;
+  var rightVotes = tracker.rightPhoto.votes;
+  var ctx = document.getElementById("myChart").getContext("2d");
+  myNewChart = new Chart(ctx).Doughnut([{value: rightVotes, color: "red"},{value: leftVotes, color: "blue"}]);
+  tracker.displayPhoto();
+
+})
+.fail(function(err) {
+  console.log(err);
+});
 
   var Photo = function(fileLocation){
     this.path = fileLocation;
     this.votes = 1;
   }
-  var kitten1 = new Photo('img/kittens/kitten1.jpg');
-  var kitten2 = new Photo('img/kittens/kitten2.jpg');
-  var kitten3 = new Photo('img/kittens/kitten3.jpg');
-  var kitten4 = new Photo('img/kittens/kitten4.jpg');
-  var kitten5 = new Photo('img/kittens/kitten5.jpg');
-  var kitten6 = new Photo('img/kittens/kitten6.jpg');
-  var kitten7 = new Photo('img/kittens/kitten7.jpg');
-  var kitten8 = new Photo('img/kittens/kitten8.jpg');
-  var kitten9 = new Photo('img/kittens/kitten9.jpg');
-  var kitten10 = new Photo('img/kittens/kitten10.jpg');
-  var kitten11 = new Photo('img/kittens/kitten11.jpg');
-  var kitten12 = new Photo('img/kittens/kitten12.jpg');
-  var kitten13 = new Photo('img/kittens/kitten13.jpg');
-  var kitten14 = new Photo('img/kittens/kitten14.jpg');
 
-  var photoArray = [kitten1, kitten2, kitten3, kitten4, kitten5, kitten6,kitten7, kitten8, kitten9, kitten10, kitten11, kitten12, kitten13, kitten14];
+  var photoArray = [];
 
   var Tracker = function (){
     this.leftPhoto = photoArray[this.genRand()];
     this.rightPhoto = photoArray[this.genRand()];
+
+    while(this.leftPhoto === this.rightPhoto){
+      this.leftPhoto = photoArray[this.genRand()];
+    }
   }
 
   Tracker.prototype.genRand = function() {
@@ -63,19 +89,13 @@ $(document).ready(function() {
         tracker.rightPhoto = photoArray[tracker.genRand()];
         myNewChart.segments[1].value = tracker.leftPhoto.votes;
         myNewChart.segments[0].value = tracker.rightPhoto.votes;
+
+        if (tracker.leftPhoto === tracker.rightPhoto){
+          tracker.leftPhoto = photoArray[tracker.genRand()];
+        }
+
         tracker.displayPhoto();
         myNewChart.update();
       });
   }
-
-  var tracker = new Tracker();
-
-  tracker.displayPhoto();
-  tracker.addEventListeners();
-
-  var leftVotes = tracker.leftPhoto.votes;
-  var rightVotes = tracker.rightPhoto.votes;
-
-  var ctx = document.getElementById("myChart").getContext("2d");
-  var myNewChart = new Chart(ctx).Doughnut([{value: rightVotes, color: "red"},{value: leftVotes, color: "blue"}]);
 });
