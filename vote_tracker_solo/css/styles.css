@@ -1,3 +1,12 @@
+body {
+  background-color: #5c5b5e;
+}
+
+h2 {
+  font-family: 'Quantico', sans-serif;
+  text-align: center;
+  font-size: 55px;
+}
 #kittenLeft {
   display: inline-block;
 }
@@ -11,11 +20,36 @@
 }
 
 #picsAndChart {
-  width: 960px;
+  width: 715px;
   margin: auto;
 }
 
-body {
-  background-color: #5c5b5e;
+#nextKitten {
+ width:160px;
+ margin:0 auto;
 }
 
+#kittenRight:hover {
+  background-color: #cc0000;
+}
+
+#kittenLeft:hover {
+  background-color: #0010cc;
+}
+
+#btn {
+  -webkit-border-radius: 17;
+  -moz-border-radius: 17;
+  border-radius: 17px;
+  font-family: Courier New;
+  color: #fcfcfc;
+  font-size: 20px;
+  background: #000000;
+  padding: 10px 10px 10px 10px;
+  text-decoration: none;
+}
+
+#btn:hover {
+  background: #541e57;
+  text-decoration: none;
+}
