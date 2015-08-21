@@ -1,0 +1,19 @@
+{
+  "name": "vote_server",
+  "version": "1.0.0",
+  "description": "this is the vote tracker server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "cat",
+    "votes"
+  ],
+  "author": "Travis Smith",
+  "license": "MIT",
+  "dependencies": {
+    "express": "~4.13.3"
+  }
+}
